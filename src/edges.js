@@ -1,5 +1,16 @@
-import {getAllCommonReachableWords} from '../utils/wordutils.js'
 
-let edges = [{from:1, to:2}]
+import {filteredNodes, nodesArr, wordIdMemo} from './nodes.js'
+// import adjacencyList from '../utils/adjacencyList.js'
+import {getPossibleWords} from '../utils/wordutils.js'
 
-export {edges}
+
+
+let edgesArr = []
+filteredNodes.forEach((node) => {
+  let adjacentWords = getPossibleWords(node.label.toUpperCase())
+  adjacentWords.forEach(dest => {
+    if(wordIdMemo[dest]>node.id && wordIdMemo[dest]<100)edgesArr.push({from: node.id, to: wordIdMemo[dest]})
+  })
+})
+
+export default edgesArr

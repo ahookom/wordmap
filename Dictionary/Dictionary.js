@@ -38,4 +38,53 @@ Trie.prototype.bulkAddWords = function(arrOfWords){
   arrOfWords.forEach(word => this.addWord(word));
 }
 
-export default Trie;
+Trie.prototype.possibleNextLetters = function(prefix){
+  let curr = 0
+  let currNode = this
+  while(curr<prefix.length){
+    let currChar = prefix[curr++]
+    if(!currNode.children[currChar]) return false
+    else currNode = currNode.children[currChar]
+  }
+  return Object.keys(currNode.children)
+}
+
+export default class TwoWayDictionary{
+  constructor(words){
+    this.prefixTrie = new Trie()
+    this.prefixTrie.bulkAddWords(words)
+    this.suffixTrie = new Trie()
+    words.forEach(word=>{
+      this.suffixTrie.addWord(word.split('').reverse().join(''))
+    })
+  }
+  search(word){
+    return this.prefixTrie.search(word)
+  }
+  possibleNextLetters(prefix){
+    return this.prefixTrie.possibleNextLetters(prefix)
+  }
+  possiblePrevLetters(suffix){
+    return this.suffixTrie.possibleNextLetters(suffix.split('').reverse().join(''))
+  }
+  possibleLettersBetween(prefix,suffix){
+    let next = this.prefixTrie(prefix).sort()
+    let prev = this.suffixTrie(suffix).sort()
+    let i = 0
+    let j = 0
+    let result = []
+    while(i < next.length && j < prev.length){
+      if(next[i]===prev[j]){
+        result.push(next[i++])
+        j++
+      }
+      else if(next[i]>prev[j]){
+        j++
+      }
+      else if(next[i]<prev[j]){
+        i++
+      }
+    }
+    return result
+  }
+}

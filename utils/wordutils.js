@@ -1,6 +1,7 @@
 import Dictionary from '../Dictionary/Dictionary.js';
-import wordlist from '../Dictionary/wordlist.js';
 import commonWordList from '../Dictionary/commonwordlist.js';
+
+import scrabbleWordArr from '../Dictionary/scrabbleWordArr.js'
 
 const MIN_WORD_LENGTH = 1;
 const MAX_WORD_LENGTH = Infinity;
@@ -36,9 +37,7 @@ const LETTER_FREQUENCIES = {
 
 const LETTER_TABLE = [];
 
-export const dictionary = new Dictionary;
-
-dictionary.bulkAddWords(commonWordList);
+export const dictionary = new Dictionary(scrabbleWordArr);
 
 export function getPathStart(pathLength = 5){
     let newCards = [];
@@ -81,7 +80,7 @@ export function isValidWord(word) {
 }
 
 
-export function getPossibleWords(word, cards = []) {
+export function getPossibleWords(word, cards = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')) {
 
   let possibleWords = [];
   const currentCards = cards;
