@@ -7,11 +7,33 @@ console.log('dictionary build took', Date.now()-now)
 function isValidWord(word) {
     return dictionary.search(word);
 }
-console.log(dictionary.possibleNextLetters('S'))
-console.log(dictionary.possiblePrevLetters('S'))
-console.log(dictionary.possibleLettersBetween('ST','RT'))
-console.log(newGetPossibleWords('start'))
-console.log(newGetPossibleWords('merry'))
+// console.log(dictionary.possibleNextLetters('S'))
+// console.log(dictionary.possiblePrevLetters('S'))
+// console.log(dictionary.possibleLettersBetween('ST','RT'))
+// console.log(newGetPossibleWords('START'))
+// console.log(newGetPossibleWords('MERRY'))
+speedTest(1000)
+function speedTest(cases){
+  let testWords = []
+  let oldTime = 0
+  let newTime = 0
+  for(let i = 0; i<cases;i++){
+    testWords.push(scrabbleWordArr[Math.floor(Math.random()*scrabbleWordArr.length)])
+  }
+  let t = Date.now()
+  testWords.forEach(word=>{
+    getPossibleWords(word)
+  })
+  oldTime = Date.now()-t
+  t = Date.now()
+  testWords.forEach(word=>{
+    newGetPossibleWords(word)
+  })
+  newTime = Date.now()-t
+  console.log('old way took', oldTime)
+  console.log('new way took', newTime)
+}
+
 
 function newGetPossibleWords(word, cards = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')) {
   let possibleWords = []
