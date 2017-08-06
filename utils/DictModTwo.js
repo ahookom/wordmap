@@ -1,6 +1,14 @@
-function Trie(){
-  this.endOfWord = false;
+function Trie(letter){
   this.children = {};
+  this.parents = {};
+}
+
+Trie.prototype.addChild = function(letter){
+  if(!this.children[letter]) this.children[letter] = new Trie()
+}
+
+Trie.prototype.addParent = function(letter){
+  this.parents[letter] = new Trie();
 }
 
 Trie.prototype.addChildren = function(letterArray){
@@ -68,8 +76,6 @@ class TwoWayDictionary{
     return this.suffixTrie.possibleNextLetters(suffix.split('').reverse().join(''))
   }
   possibleLettersBetween(prefix,suffix){
-    if(suffix.length===0)return this.possibleNextLetters(prefix)
-    if(prefix.length===0)return this.possiblePrevLetters(suffix)
     let next = this.possibleNextLetters(prefix).sort()
     let prev = this.possiblePrevLetters(suffix).sort()
     let i = 0
