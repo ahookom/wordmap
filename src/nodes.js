@@ -1,4 +1,4 @@
-import scrabbleWordArr from '../Dictionary/scrabbleWordArr.js'
+let scrabbleWordArr = window.words
 
 export let wordIdMemo = {}
 
@@ -10,6 +10,6 @@ export const nodesArr = scrabbleWordArr.map((word, index) => {
 
 // export const filteredNodes = nodesArr.filter((node) => node.id < 100)
 
-let id = 1+Math.floor(Math.random()*nodesArr.length)
+let id = Math.floor(Math.random()*nodesArr.length)
 // export const filteredNodes = nodesArr.filter((node)=>node.id===id)
-export const filteredNodes = [nodesArr[0]]
+export const filteredNodes = [nodesArr[id]]

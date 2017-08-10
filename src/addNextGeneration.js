@@ -1,6 +1,6 @@
 
 import {wordIdMemo, nodesArr, filteredNodes} from './nodes.js'
-import {getPossibleWords} from '../utils/wordutils.js'
+import {getPossibleWords} from '../utils/wordutilsModule.js'
 
 let lastGeneration = []
 let idsSoFar = {}

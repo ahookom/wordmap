@@ -1,5 +1,5 @@
 let Dictionary = require('./DictionaryModule.js')
-let scrabbleWordArr = require('./scrabbleWordArrModule.js')
+let scrabbleWordArr = window.words
 
 let now = Date.now()
 const dictionary = new Dictionary(scrabbleWordArr);
@@ -12,7 +12,7 @@ function isValidWord(word) {
 // console.log(dictionary.possibleLettersBetween('ST','RT'))
 // console.log(newGetPossibleWords('START'))
 // console.log(newGetPossibleWords('MERRY'))
-speedTest(1000)
+// speedTest(1000)
 function speedTest(cases){
   let testWords = []
   let oldTime = 0

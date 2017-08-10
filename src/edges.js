@@ -1,7 +1,7 @@
 
 import {filteredNodes, nodesArr, wordIdMemo} from './nodes.js'
 // import adjacencyList from '../utils/adjacencyList.js'
-import {getPossibleWords} from '../utils/wordutils.js'
+import {getPossibleWords} from '../utils/wordutilsModule.js'
 
 
 
