@@ -1,8 +1,6 @@
 
-import {filteredNodes, nodesArr, wordIdMemo} from './nodes.js'
-// import adjacencyList from '../utils/adjacencyList.js'
-import {getPossibleWords} from '../utils/wordutilsModule.js'
-
+import {filteredNodes, nodesArr, wordIdMemo} from './wordNodeTools.js'
+import {getPossibleWords} from '../wordutilsModule.js'
 
 
 let edgesArr = []

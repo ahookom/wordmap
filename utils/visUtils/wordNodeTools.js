@@ -8,8 +8,10 @@ export const nodesArr = scrabbleWordArr.map((word, index) => {
   return {label: word.toLowerCase(), id: index + 1}
 })
 
-// export const filteredNodes = nodesArr.filter((node) => node.id < 100)
+export const fetchNodeByWord = (word) => {
+  return nodesArr[wordIdMemo[word.toUpperCase()]-1]
+}
 
-let id = Math.floor(Math.random()*nodesArr.length)
-// export const filteredNodes = nodesArr.filter((node)=>node.id===id)
-export const filteredNodes = [nodesArr[id]]
+export const fetchNodeById = (id) => {
+  return nodesArr[id-1]
+}

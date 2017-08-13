@@ -1,39 +1,14 @@
-import {nodesArr, filteredNodes} from './nodes.js'
-import edgesArr from './edges.js'
-import addNextGeneration from './addNextGeneration.js'
+import React from 'react'
+import {Router, IndexRedirect, BrowserHistory} from 'react-router'
+import {BrowserRouter, Route} from 'react-router-dom'
+import ReactDOM from 'react-dom'
 
-// create an array with nodes
-var nodes = new vis.DataSet(filteredNodes);
+import Config from './components/Config.jsx'
 
-// create an array with edges
-var edges = new vis.DataSet(edgesArr);
+ReactDOM.render(
+<div>
+  <Config />
 
-// create a network
-var container = document.getElementById('mynetwork');
-
-// provide the data in the vis format
-var data = {
-    nodes: nodes,
-    edges: edges
-};
-var options = {
-    physics: {
-        adaptiveTimestep: true,
-        timestep: 0.3
-    },
-    manipulation: {
-        addNode: function(nodeData, callback){
-            callback(nodeData)
-        }
-    }
-};
-
-// initialize your network!
-var network = new vis.Network(container, data, options);
-
-
-document.getElementById('bubbleOut').onclick = function(event){
-  network.addNodeMode()
-  addNextGeneration(nodes,edges)
-  network.disableEditMode()
-}
+</div>,
+document.getElementById('root')
+)

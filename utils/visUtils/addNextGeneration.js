@@ -1,17 +1,13 @@
 
-import {wordIdMemo, nodesArr, filteredNodes} from './nodes.js'
-import {getPossibleWords} from '../utils/wordutilsModule.js'
+import {wordIdMemo, nodesArr} from './wordNodeTools.js'
+import {getPossibleWords} from '../wordutilsModule.js'
 
-let lastGeneration = []
-let idsSoFar = {}
-
-const addNextGeneration = (nodes,edges)=>{
+const addNextGeneration = ()=>{
+  let nodes = window.nodes
+  let edges = window.edges
+  let idsSoFar = window.idsSoFar
   let nextGeneration = []
-  if(!lastGeneration.length){
-    lastGeneration = filteredNodes
-    filteredNodes.forEach(node=>idsSoFar[node.id]=true)
-  }
-  lastGeneration.forEach((node) => {
+  window.previousGeneration.forEach((node) => {
     let adjacentWords = getPossibleWords(node.label.toUpperCase())
     adjacentWords.forEach(word => {
       let id = wordIdMemo[word]
@@ -23,7 +19,7 @@ const addNextGeneration = (nodes,edges)=>{
       }
     })
   })
-  lastGeneration = nextGeneration
+  window.previousGeneration = nextGeneration
   console.log('click registered')
 }
 
